@@ -57,3 +57,106 @@ src="https://github.com/user-attachments/assets/8c0760ff-6358-4b94-886a-bf3c1491
 </tr>
 
 </table>
+
+
+<br>
+
+## Installation
+
+### 사전 요구사항
+
+- Python 3.12 이상
+- pip (Python 패키지 관리자)
+
+### 1. 저장소 클론
+
+```bash
+git clone https://github.com/your-username/Tunnel-Modelling-generator-with-picture.git
+cd Tunnel-Modelling-generator-with-picture
+```
+
+### 2. 가상환경 생성 및 활성화
+
+```bash
+# 가상환경 생성
+python -m venv tunnel_env
+
+# 활성화 (Windows)
+tunnel_env\Scripts\activate
+
+# 활성화 (macOS/Linux)
+source tunnel_env/bin/activate
+```
+
+### 3. 패키지 설치
+
+```bash
+pip install -r requirements.txt
+```
+
+`requirements.txt`에 포함된 주요 패키지:
+- `numpy` — 수치 계산 및 포인트클라우드 생성
+- `opencv-python` — 결함 이미지 처리
+- `trimesh` — 3D 메시 생성 및 OBJ 저장
+
+**Open3D 뷰어 사용 시** (tunnel.py 실행에 필요):
+```bash
+pip install open3d
+```
+
+<br>
+
+## Usage
+
+이 프로젝트는 두 가지 실행 방식을 제공합니다.
+
+### 방법 1: 웹 브라우저 뷰어 (generate_tunnel.py)
+
+터널 포인트클라우드를 생성하고 웹 브라우저에서 3D 뷰어를 실행합니다.
+
+```bash
+python generate_tunnel.py
+```
+
+실행 결과:
+- `viewer/data/tunnel_points.json` — 터널 포인트클라우드 데이터
+- `viewer/data/defects.json` — 결함 위치 및 정보
+- 로컬 서버(`http://127.0.0.1:9000`)가 자동 시작되고 브라우저가 열림
+- 종료: `Ctrl+C`
+
+### 방법 2: Open3D 데스크톱 뷰어 (tunnel.py)
+
+Open3D를 사용한 네이티브 3D 뷰어로 결함 마커 클릭 및 사진 확인이 가능합니다.
+
+```bash
+python tunnel.py
+```
+
+실행 결과:
+- `tunnel_model.obj` — 터널 3D 메시 파일
+- `tunnel_pointcloud.ply` — 포인트클라우드 파일
+- Open3D 뷰어 창이 열림
+
+조작법:
+- 마우스 왼쪽: 회전 | 오른쪽: 이동 | 스크롤: 확대/축소
+- 숫자 키 (1, 2, 3...): 해당 결함 사진 보기
+- Q: 뷰어 종료
+
+<br>
+
+## Project Structure
+
+```
+Tunnel-Modelling-generator-with-picture/
+├── generate_tunnel.py    # 웹 뷰어용 터널 생성 스크립트
+├── tunnel.py             # Open3D 데스크톱 뷰어 스크립트
+├── requirements.txt      # Python 의존성 패키지
+├── defect_images/        # 결함 사진 (실제 촬영 이미지로 교체 가능)
+│   ├── crack_01.jpg
+│   ├── leak_02.jpg
+│   └── spalling_03.jpg
+└── viewer/               # 웹 기반 3D 뷰어 (generate_tunnel.py 실행 시 생성)
+    └── data/
+        ├── tunnel_points.json
+        └── defects.json
+```
