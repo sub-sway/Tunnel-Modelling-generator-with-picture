@@ -1,0 +1,20 @@
+# 가상환경
+tunnel_env/
+
+# 생성된 데이터 (스크립트 실행하면 자동 생성)
+viewer/data/
+tunnel_model.obj
+tunnel_pointcloud.ply
+
+# 이전 버전
+tunnel.py
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
